@@ -19,6 +19,7 @@ class MovieDataService {
     updateReview(data) {
         return axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/review`, data);
     }
+
     deleteReview(id, userId) {
         return axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/review`, { data: { review_id: id, user_id: userId } });
     }

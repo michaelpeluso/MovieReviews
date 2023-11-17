@@ -17,6 +17,7 @@ const Movie = (props) => {
         rated: "",
         reviews: [],
     });
+
     const getMovie = (id) => {
         MovieDataService.get(id)
             .then((response) => {
@@ -27,6 +28,7 @@ const Movie = (props) => {
                 console.log(e);
             });
     };
+
     useEffect(() => {
         getMovie(props.match.params.id);
     }, [props.match.params.id]);

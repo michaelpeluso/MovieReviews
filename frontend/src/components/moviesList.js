@@ -1,3 +1,4 @@
+// import dependencies
 import React, { useState, useEffect } from "react";
 import MovieDataService from "../services/moviesDataService";
 import { Link } from "react-router-dom";
@@ -9,7 +10,11 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 
+// build MoviesList
 const MoviesList = (props) => {
+    //               ^^^  parameters passed in via App.js
+
+    // useState variables
     const [movies, setMovies] = useState([]);
     const [searchTitle, setSearchTitle] = useState("");
     const [searchRating, setSearchRating] = useState("");
@@ -19,6 +24,7 @@ const MoviesList = (props) => {
     const [entriesPerPage, setEntriesPerPage] = useState(0);
     const [currentSearchMode, setCurrentSearchMode] = useState("");
 
+    // useEffect update functions
     useEffect(() => {
         retrieveMovies();
         retrieveRatings();
@@ -32,6 +38,7 @@ const MoviesList = (props) => {
         setCurrentPage(0);
     }, [currentSearchMode]);
 
+    // update functions
     const retrieveNextPage = () => {
         if (currentSearchMode === "findByTitle") {
             findByTitle();
@@ -78,6 +85,7 @@ const MoviesList = (props) => {
         setSearchRating(searchRating);
     };
 
+    // query for movies
     const find = (query, by) => {
         MovieDataService.find(query, by, currentPage)
             .then((response) => {
@@ -105,6 +113,7 @@ const MoviesList = (props) => {
         }
     };
 
+    // render
     return (
         <div className="App">
             <Container>
@@ -168,4 +177,5 @@ const MoviesList = (props) => {
     );
 };
 
+// export
 export default MoviesList;

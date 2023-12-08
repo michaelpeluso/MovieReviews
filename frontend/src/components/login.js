@@ -1,11 +1,17 @@
+// import dependencies
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+// build Login
 const Login = (props) => {
+    //          ^^^  parameters passed in via App.js
+
+    // useState variables
     const [name, setName] = useState("");
     const [id, setId] = useState("");
 
+    // update functions
     const onChangeName = (e) => {
         const name = e.target.value;
         setName(name);
@@ -14,11 +20,14 @@ const Login = (props) => {
         const id = e.target.value;
         setId(id);
     };
+
+    // set local user variables
     const login = () => {
         props.login({ name: name, id: id });
         props.history.push("/");
     };
 
+    // render
     return (
         <div>
             <Form>
@@ -37,4 +46,6 @@ const Login = (props) => {
         </div>
     );
 };
+
+// export
 export default Login;

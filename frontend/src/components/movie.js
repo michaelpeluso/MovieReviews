@@ -1,7 +1,9 @@
+// import dependencies
 import React, { useState, useEffect } from "react";
 import MovieDataService from "../services/moviesDataService";
 import { Link } from "react-router-dom";
 
+//// react bootstrap
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
@@ -10,7 +12,11 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Media from "react-bootstrap/Media";
 
+// build Movie
 const Movie = (props) => {
+    //          ^^^  parameters passed in via App.js
+
+    // placeholder movie useState variable
     const [movie, setMovie] = useState({
         id: null,
         title: "",
@@ -18,6 +24,7 @@ const Movie = (props) => {
         reviews: [],
     });
 
+    // update movie
     const getMovie = (id) => {
         MovieDataService.get(id)
             .then((response) => {
@@ -29,10 +36,12 @@ const Movie = (props) => {
             });
     };
 
+    // update movie variable
     useEffect(() => {
         getMovie(props.match.params.id);
     }, [props.match.params.id]);
 
+    // delete
     const deleteReview = (reviewId, index) => {
         MovieDataService.deleteReview(reviewId, props.user.id)
             .then((response) => {
@@ -48,6 +57,7 @@ const Movie = (props) => {
             });
     };
 
+    // render
     return (
         <div>
             <Container>
@@ -66,6 +76,7 @@ const Movie = (props) => {
                         <br></br>
                         <h2>Reviews</h2>
                         <br></br>
+                        {/* render and map through all movies */}
                         {movie.reviews.map((review, index) => {
                             return (
                                 <Media key={index}>
@@ -102,4 +113,5 @@ const Movie = (props) => {
     );
 };
 
+// export
 export default Movie;
